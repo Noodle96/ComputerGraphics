@@ -78,10 +78,17 @@ int main(){
     };
     unsigned int indices[] = {  // note that we start from 0!
         // 0, 1, 3,  // first Triangle
-        // 1, 2, 3   // second Triangle
-        0, 1, 2,
-        3, 4, 5
+        // 1, 2, 3,   // second Triangle
+        // 0, 1, 2,
+        // 3, 4, 5
 
+    };
+
+    float vertices2[] = {
+        0.8f, 0.9f, 0.0f,
+        0.5f, 0.0f, 0.0f,
+        0.7f, -0.9f, 0.0f,
+        -0.5f, -0.9f, 0.0f,
     };
 
     unsigned int VBO, VAO, EBO;
@@ -92,7 +99,9 @@ int main(){
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
@@ -107,10 +116,25 @@ int main(){
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
     glBindVertexArray(0); 
-
+    
 
     // uncomment this call to draw in wireframe polygons.
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+
+    //TO LINE
+    // unsigned int VBO_2, VAO_2;
+    // glGenVertexArrays(1, &VAO_2);
+    // glGenBuffers(1, &VBO_2);
+    // glBindVertexArray(VAO_2);
+    // glBindBuffer(GL_ARRAY_BUFFER, VBO_2);
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
+    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    // glEnableVertexAttribArray(0);
+    // glBindBuffer(GL_ARRAY_BUFFER, 0); 
+    // glBindVertexArray(0); 
+
+    
 
     // render loop
     // -----------
@@ -129,7 +153,12 @@ int main(){
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         // glDrawArrays(GL_TRIANGLES, 0, 3);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        // glDrawElements(GL_LINE , 3, GL_UNSIGNED_INT, 0);
+        // glDrawElements(GL_TRIANGLES , 6, GL_UNSIGNED_INT, 0);
+
+        // glBindVertexArray(VAO_2); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+        glDrawElements(GL_TRIANGLES , 6, GL_UNSIGNED_INT, 0);
+
         // glBindVertexArray(0); // no need to unbind it every time 
  
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
