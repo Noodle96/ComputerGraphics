@@ -60,35 +60,25 @@ int main(){
     //      0.5f, -0.5f, 0.0f, // right 
     //      0.0f,  0.5f, 0.0f,  // top    
     // }; 
-    float a = 0.80;
+    // float a = 0.80;
     float vertices[] = {
-        //  0.5f,  0.5f, 0.0f,  // top right
-        //  0.5f, -0.5f, 0.0f,  // bottom right
-        // -0.5f, -0.5f, 0.0f,  // bottom left
-        // -0.5f,  0.5f, 0.0f,   // top left 
-        // 1.0f, -1.0f, 0.0f,
-        // 1.0f, 1.0f, 0.0f,
-        0.0f, 2*a/float(sqrt(3.0)), 0.0f,
-        a, -a/float(sqrt(3.0)), 0.0f,
-        -a, -a/float(sqrt(3.0)), 0.0f,
-
-        a, a/float(sqrt(3)), 0.0f,
-        0.0f,-2*a/float(sqrt(3)) ,0.0f,
-        -a,a/float(sqrt(3)) ,0.0f,
+         0.5f,  0.5f, 0.0f,  // top right
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+        -0.5f,  0.5f, 0.0f,   // top left 
+        1.0f, -1.0f, 0.0f,
+        1.0f, 1.0f, 0.0f,
+        // 0.0f, 2*a/float(sqrt(3.0)), 0.0f,
+        // a, -a/float(sqrt(3.0)), 0.0f,
+        // -a, -a/float(sqrt(3.0)), 0.0f,
+        // a, a/float(sqrt(3)), 0.0f,
+        // 0.0f,-2*a/float(sqrt(3)) ,0.0f,
+        // -a,a/float(sqrt(3)) ,0.0f,
     };
     unsigned int indices[] = {  // note that we start from 0!
-        // 0, 1, 3,  // first Triangle
-        // 1, 2, 3,   // second Triangle
-        // 0, 1, 2,
-        // 3, 4, 5
+        0, 1, 3,  // first Triangle
+        1, 2, 3,   // second Triangle
 
-    };
-
-    float vertices2[] = {
-        0.8f, 0.9f, 0.0f,
-        0.5f, 0.0f, 0.0f,
-        0.7f, -0.9f, 0.0f,
-        -0.5f, -0.9f, 0.0f,
     };
 
     unsigned int VBO, VAO, EBO;
@@ -120,21 +110,6 @@ int main(){
 
     // uncomment this call to draw in wireframe polygons.
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-
-    //TO LINE
-    // unsigned int VBO_2, VAO_2;
-    // glGenVertexArrays(1, &VAO_2);
-    // glGenBuffers(1, &VBO_2);
-    // glBindVertexArray(VAO_2);
-    // glBindBuffer(GL_ARRAY_BUFFER, VBO_2);
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
-    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    // glEnableVertexAttribArray(0);
-    // glBindBuffer(GL_ARRAY_BUFFER, 0); 
-    // glBindVertexArray(0); 
-
-    
 
     // render loop
     // -----------
