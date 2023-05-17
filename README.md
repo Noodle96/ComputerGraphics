@@ -4,28 +4,41 @@
 ![no-yellow-team](img/badges/built-by-russell.svg)
 
 
-# Table of contents
+### Table of contents
 
 - [Lab 01](#lab-01)
 - [BASE](#base)
     - [Two Triangle](#two-triangle)
-    - [Triangles](#triangles)
+    - [Exercise 01](#exercise-01)
+    - [Exercise 02](#exercise-02)
+    - [Exercise 03](#exercise-03)
 
-# Lab 01
+
+## Lab 01
 [(Back to top)](#table-of-contents)
 - Lab01:  Star
 <p align="center">
   <img src='LAB01/lab01.png' width='800px' />
 </p>
 
-# BASE
+## BASE
 [(Back to top)](#table-of-contents)
-- Two Triangles
+#### Two Triangle
 <p align="center">
   <img src='img/twoTriangle.png' width='800px' />
 </p>
 
-- Separate Triangles
+#### Exercise 01
+Try to draw 2 triangles next to each other using glDrawArrays by adding more vertices to your data.
 <p align="center">
   <img src='img/triangles.png' width='800px' />
+</p>
+
+#### Exercise 02
+Now create the same 2 triangles using two different VAOs and VBOs for their data.
+
+#### Exercise 03
+Create two shader programs where the second program uses a different fragment shader that outputs the color yellow; draw both triangles again where one outputs the color yellow.
+<p align="center">
+  <img src='img/exercise03.png' width='800px' />
 </p>
