@@ -9,6 +9,7 @@
 - [Lab 01](#lab-01)
 - [BASE](#base)
     - [Two Triangle](#two-triangle)
+    - [Triangles](#triangles)
 
 # Lab 01
 [(Back to top)](#table-of-contents)
@@ -22,4 +23,9 @@
 - Two Triangles
 <p align="center">
   <img src='img/twoTriangle.png' width='800px' />
+</p>
+
+- Separate Triangles
+<p align="center">
+  <img src='img/triangles.png' width='800px' />
 </p>
