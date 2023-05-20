@@ -12,7 +12,9 @@
     - [Exercise 01](#exercise-01)
     - [Exercise 02](#exercise-02)
     - [Exercise 03](#exercise-03)
-
+- [SHADERS](#shaders)
+    - [Change Color](#change-color)
+- [Lab 02](#lab-02)
 
 ## Lab 01
 [(Back to top)](#table-of-contents)
@@ -42,3 +44,8 @@ Create two shader programs where the second program uses a different fragment sh
 <p align="center">
   <img src='img/exercise03.png' width='800px' />
 </p>
+
+## SHADERS
+[(Back to top)](#table-of-contents)
+#### Change Color
+![no-yellow-team](img/gifs/twoTriangle-changeColor.gif)
