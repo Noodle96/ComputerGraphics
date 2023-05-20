@@ -13,6 +13,8 @@
     - [Exercise 02](#exercise-02)
     - [Exercise 03](#exercise-03)
 - [SHADERS](#shaders)
+    - [First Example](#first-example-shaders)
+    - [Second Example](#second-example-shaders)
     - [Change Color](#change-color)
 - [Lab 02](#lab-02)
 
@@ -47,5 +49,15 @@ Create two shader programs where the second program uses a different fragment sh
 
 ## SHADERS
 [(Back to top)](#table-of-contents)
+
+#### First Example Shaders
+![no-yellow-team](img/gifs/firstExampleShader.gif)
+
+#### Second Example Shaders
+<p align="center">
+  <img src='img/secondExampleShader.png' width='800px' />
+</p>
+
+
 #### Change Color
 ![no-yellow-team](img/gifs/twoTriangle-changeColor.gif)
