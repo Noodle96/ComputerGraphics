@@ -61,3 +61,9 @@ Create two shader programs where the second program uses a different fragment sh
 
 #### Change Color
 ![no-yellow-team](img/gifs/twoTriangle-changeColor.gif)
+
+## LAB 02
+[(Back to top)](#table-of-contents)
+- Lab02:  Draw to triangles in opposite direction and change the colors, first triangle change the greenValue(red, change Green, blue)
+    and the second triangle change the red color (change red, green, blue), after that, both triangles scale in opposite direction too.
+![no-yellow-team](img/gifs/lab2-scala-shaders.gif)
