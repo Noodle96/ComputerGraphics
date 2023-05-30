@@ -17,6 +17,7 @@
     - [Second Example](#second-example-shaders)
     - [Change Color](#change-color)
 - [Lab 02](#lab-02)
+- [Lab 03](#lab-03)
 
 ## Lab 01
 [(Back to top)](#table-of-contents)
@@ -67,3 +68,9 @@ Create two shader programs where the second program uses a different fragment sh
 - Lab02:  Draw to triangles in opposite direction and change the colors, first triangle change the greenValue(red, change Green, blue)
     and the second triangle change the red color (change red, green, blue), after that, both triangles scale in opposite direction too.
 ![no-yellow-team](img/gifs/lab2-scala-shaders.gif)
+
+## LAB 03
+[(Back to top)](#table-of-contents)
+- Lab03: In a single window render 3 objects (any) and in the first apply the scale, in the second apply the rotation and in the third apply the translation.
+<!-- ![no-yellow-team](img/gifs/lab2-scala-shaders.gif) -->
+
