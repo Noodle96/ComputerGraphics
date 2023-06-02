@@ -8,6 +8,7 @@
 
 
 #include "shader.h"
+#include "figures.h"
 
 #include <iostream>
 #include <cmath>
@@ -59,22 +60,34 @@ int main()
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
+
     float a = 0.1;
-    float firstTriangle[] = {
-        //  0.5f, -0.5f, 0.0f,  // bottom right
-        // -0.5f, -0.5f, 0.0f,  // bottom left
-        //  0.0f,  0.5f, 0.0f   // top 
-        0.0f, -4*a, 0.0f, //botton right
-        -8*a, -4*a, 0.0f, //bottom left
-        -4*a, 4*a, 0.0f //top
+    // float firstTriangle[] = {
+    //     //  0.5f, -0.5f, 0.0f,  // bottom right
+    //     // -0.5f, -0.5f, 0.0f,  // bottom left
+    //     //  0.0f,  0.5f, 0.0f   // top 
+    //     0.0f, -4*a, 0.0f, //botton right
+    //     -8*a, -4*a, 0.0f, //bottom left
+    //     -4*a, 4*a, 0.0f //top
 
-    };
+    // };
+    int SIZEOF_L_FT;
+    float *firstTriangle = getFirstTriangle(SIZEOF_L_FT);
+    // std::cout << "printing first Triangle" << std::endl;
+    // for(int e = 0  ;e < 9 ; e++){
+    //     std::cout << firstTriangle[e] << "  ->  ";
+    // }std::cout << std::endl;
 
-    float secondTriangle[] = {
-        4*a, -4*a, 0.0f, // bottom
-        8*a, 4*a, 0.0f, // top right
-        0.0f, 4*a, 0.0f // top left
-    };
+
+    // float secondTriangle[] = {
+    //     4*a, -4*a, 0.0f, // bottom
+    //     8*a, 4*a, 0.0f, // top right
+    //     0.0f, 4*a, 0.0f // top left
+    // };
+    // std::cout << SIZEOF_L_FT << std::endl;
+    int SIZEOF_L_ST;
+    float * secondTriangle = getSecondTriangle(SIZEOF_L_ST);
+
 
     unsigned int VBOs[2], VAOs[2];
     glGenVertexArrays(2, VAOs); // we can also generate multiple VAOs or buffers at the same time
@@ -83,14 +96,15 @@ int main()
     //first Triangle
     glBindVertexArray(VAOs[0]);
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(firstTriangle), firstTriangle, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, SIZEOF_L_FT, (firstTriangle), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);	// Vertex attributes stay the same
     glEnableVertexAttribArray(0);
 
     //second triangle
     glBindVertexArray(VAOs[1]);	// note that we bind to a different VAO now
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);	// and a different VBO
-    glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle), secondTriangle, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, SIZEOF_L_ST, secondTriangle, GL_STATIC_DRAW);
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle), secondTriangle, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out
     glEnableVertexAttribArray(0);
 
