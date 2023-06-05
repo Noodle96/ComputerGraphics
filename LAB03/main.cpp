@@ -85,7 +85,7 @@ int main(){
 
     // render loop
     // -----------
-    float scaleFactor = 0.5;
+    double scaleFactor = 0.5;
     bool subida = true;
     int k = 0;
 
@@ -114,9 +114,37 @@ int main(){
         glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
         glm::mat4 transform2 = glm::mat4(1.0f);
         glm::mat4 transform3 = glm::mat4(1.0f);
-        //std::cout << glm::to_string(transform) << std::endl;
+        // glm::vec3 test = glm::vec3(0.0f, 0.0f, 1.0f);
+        // std::cout << glm::to_string(test) << std::endl;
+        // std::cout << glm::to_string(transform) << std::endl;
         //transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 
+
+        //EXAMPLE WITH SCALE
+        // glm::vec4 vec(-8.0f, 1.0f, 5.0f, 1.0f);
+        // glm::mat4 trans = glm::mat4(1.0f);
+        // trans = glm::scale(trans, glm::vec3(0.1f, 0.3f, 0.5f));
+        // std::cout << glm::to_string(trans) << std::endl;
+        // vec = trans * vec;
+        // std::cout << "test: "<< vec.x << " " << vec.y << " " << vec.z << std::endl;
+
+
+        //EXAMPLE WITH TRANSLATE
+        // glm::vec4 vec(-8.0f, 1.0f, 5.0f, 1.0f);
+        // glm::mat4 trans = glm::mat4(1.0f);
+        // trans = glm::translate(trans, glm::vec3(0.1f, 0.3f, 0.5f));
+        // std::cout << glm::to_string(trans) << std::endl;
+        // vec = trans * vec;
+        // std::cout << "test: "<< vec.x << " " << vec.y << " " << vec.z << std::endl;
+
+
+        //EXAMPLE WITH ROTATE
+        // glm::vec4 vec(5.0f, 5.0f, 0.0f, 0.0f);
+        // glm::mat4 trans = glm::mat4(1.0f);
+        // trans = glm::rotate(trans, glm::radians(30.0f), glm::vec3(1.0, 0.0, 0.0));
+        // std::cout << glm::to_string(trans) << std::endl;
+        // vec = trans * vec;
+        // std::cout << "test: "<< vec.x << " " << vec.y << " " << vec.z << std::endl;
 
         //LOGICA DE LA SCALA
         if(subida){
@@ -140,9 +168,16 @@ int main(){
         
         
         transform = glm::scale(transform, glm::vec3(scaleFactor, scaleFactor, scaleFactor));
+        // std::cout << glm::to_string(transform) << std::endl;
+
         transform2 = glm::translate(transform2, glm::vec3(transationFactor, 0, 0));
+        // std::cout << glm::to_string(transform2) << std::endl;
+
+
+        transform3 = glm::translate(transform3, glm::vec3(-0.4f, -0.2f, 0));
+        transform3 = glm::rotate(transform3, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        // std::cout << (float)glfwGetTime() << std::endl;
         // transform2 = glm::translate(transform2, glm::vec3(1.0f, 1.0f, 0.0f));
-        
         //transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 
 
@@ -171,6 +206,9 @@ int main(){
         // render the triangle
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
+
+
+
         //SECOND TRIANGLE
         // transform2 = glm::scale(transform2, glm::vec3(1.75-scaleFactor, 1.75-scaleFactor, 1.75-scaleFactor));
         ourShader2.use();
@@ -188,6 +226,8 @@ int main(){
         //THIRD TRIANGLE
         ourShader3.use();
         glBindVertexArray(VAOs[2]);
+        unsigned int transformLoc3 = glGetUniformLocation(ourShader3.ID, "transform3");
+        glUniformMatrix4fv(transformLoc3, 1, GL_FALSE, glm::value_ptr(transform3));
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
 
