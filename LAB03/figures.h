@@ -8,9 +8,9 @@ float* getFirstTriangle(int &SIZEOF_L){
         //  0.5f, -0.5f, 0.0f,  // bottom right
         // -0.5f, -0.5f, 0.0f,  // bottom left
         //  0.0f,  0.5f, 0.0f   // top 
-        -6*a, 5*a, 0.0f, //botton left
-        -4*a, 5*a, 0.0f, //bottom right
-        -5*a, 6*a, 0.0f //top
+        -8*a, 1*a, 0.0f, //botton left
+        -2*a, 1*a, 0.0f, //bottom right
+        -5*a, 7*a, 0.0f //top
     };
 	SIZEOF_L = sizeof(firstTriangle);
 	return firstTriangle;

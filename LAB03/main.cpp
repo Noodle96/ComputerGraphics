@@ -88,6 +88,9 @@ int main(){
     float scaleFactor = 0.5;
     bool subida = true;
     int k = 0;
+
+    float transationFactor = 0.1;
+    bool topeDerecha = true;
     while (!glfwWindowShouldClose(window))
     {
         // input
@@ -108,31 +111,42 @@ int main(){
 
 
 
-        // glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-        // glm::mat4 transform2 = glm::mat4(1.0f);
-
-
-
+        glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+        glm::mat4 transform2 = glm::mat4(1.0f);
+        glm::mat4 transform3 = glm::mat4(1.0f);
         //std::cout << glm::to_string(transform) << std::endl;
         //transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 
 
+        //LOGICA DE LA SCALA
+        if(subida){
+            scaleFactor += 0.005;
+            if(scaleFactor >= 1.25) subida = false;
+        }else{
+            scaleFactor-= 0.005;
+            if(scaleFactor <= 0.5) subida = true;
+        }
 
-        // if(subida){
-        //     scaleFactor += 0.005;
-        //     if(scaleFactor >= 1.25) subida = false;
-        // }else{
-        //     scaleFactor-= 0.005;
-        //     if(scaleFactor <= 0.5) subida = true;
-        // }
+
+        //LOGICA DELA TRANSLACION
+        if(topeDerecha){
+            transationFactor += 0.005;
+            if(transationFactor >= 1.2) topeDerecha=false;
+        }else{
+            transationFactor -= 0.005;
+            if(transationFactor <= -0.2) topeDerecha = true;
+        }
+        // std::cout <<traslationFactor << std::endl;
         
         
+        transform = glm::scale(transform, glm::vec3(scaleFactor, scaleFactor, scaleFactor));
+        transform2 = glm::translate(transform2, glm::vec3(transationFactor, 0, 0));
+        // transform2 = glm::translate(transform2, glm::vec3(1.0f, 1.0f, 0.0f));
         
-        // transform = glm::scale(transform, glm::vec3(scaleFactor, scaleFactor, scaleFactor));
+        //transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 
 
-
-        // if(k <=3){
+        // if(k <=200){
         //     std::cout << glm::to_string(transform) << std::endl;
         //     k++;    
         // }
@@ -141,19 +155,19 @@ int main(){
         ourShader.use();
         glBindVertexArray(VAOs[0]);
         // update shader uniform
-        double  timeValue = glfwGetTime();
+        //double  timeValue = glfwGetTime();
         //std::cout << "timeValue: " << timeValue << std::endl;
         // float greenValue = static_cast<float>(sin(timeValue) / 2.0 + 0.5);
-        float greenValue = static_cast<float>(fabs(sin(1.2*timeValue)));
+        //float greenValue = static_cast<float>(fabs(sin(1.2*timeValue)));
         //std::cout << "greenValue: " << greenValue << std::endl;
 
 
-        // int vertexColorLocation = glGetUniformLocation(ourShader.ID, "ourColor");
+        //int vertexColorLocation = glGetUniformLocation(ourShader.ID, "ourColor");
         // ourShader.changeOurColor(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
         // // glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
-        // unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
-        // glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+        unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
         // render the triangle
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
@@ -165,8 +179,8 @@ int main(){
         // vertexColorLocation = glGetUniformLocation(ourShader2.ID, "ourColor");
         // ourShader2.changeOurColor(vertexColorLocation, (1.0-redValue), 0.0f, 0.0f, 1.0f);
 
-        // unsigned int transformLoc2 = glGetUniformLocation(ourShader2.ID, "transform2");
-        // glUniformMatrix4fv(transformLoc2, 1, GL_FALSE, glm::value_ptr(transform2));
+        unsigned int transformLoc2 = glGetUniformLocation(ourShader2.ID, "transform2");
+        glUniformMatrix4fv(transformLoc2, 1, GL_FALSE, glm::value_ptr(transform2));
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
 
@@ -190,8 +204,8 @@ int main(){
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     */
-    glDeleteVertexArrays(2, VAOs);
-    glDeleteBuffers(2, VBOs);
+    glDeleteVertexArrays(3, VAOs);
+    glDeleteBuffers(3, VBOs);
 
     //glDeleteProgram(shaderProgram);
 
