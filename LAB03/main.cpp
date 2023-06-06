@@ -165,21 +165,6 @@ int main(){
             if(transationFactor <= -0.2) topeDerecha = true;
         }
         // std::cout <<traslationFactor << std::endl;
-        
-        
-        transform = glm::scale(transform, glm::vec3(scaleFactor, scaleFactor, scaleFactor));
-        // std::cout << glm::to_string(transform) << std::endl;
-
-        transform2 = glm::translate(transform2, glm::vec3(transationFactor, 0, 0));
-        // std::cout << glm::to_string(transform2) << std::endl;
-
-
-        transform3 = glm::translate(transform3, glm::vec3(-0.4f, -0.2f, 0));
-        transform3 = glm::rotate(transform3, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-        // std::cout << (float)glfwGetTime() << std::endl;
-        // transform2 = glm::translate(transform2, glm::vec3(1.0f, 1.0f, 0.0f));
-        //transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-
 
         // if(k <=200){
         //     std::cout << glm::to_string(transform) << std::endl;
@@ -201,6 +186,8 @@ int main(){
         // ourShader.changeOurColor(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
         // // glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
+        transform = glm::scale(transform, glm::vec3(scaleFactor, scaleFactor, scaleFactor));
+        // std::cout << glm::to_string(transform) << std::endl;
         unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
         // render the triangle
@@ -217,6 +204,9 @@ int main(){
         // vertexColorLocation = glGetUniformLocation(ourShader2.ID, "ourColor");
         // ourShader2.changeOurColor(vertexColorLocation, (1.0-redValue), 0.0f, 0.0f, 1.0f);
 
+
+        transform2 = glm::translate(transform2, glm::vec3(transationFactor, 0, 0));
+        // std::cout << glm::to_string(transform2) << std::endl;
         unsigned int transformLoc2 = glGetUniformLocation(ourShader2.ID, "transform2");
         glUniformMatrix4fv(transformLoc2, 1, GL_FALSE, glm::value_ptr(transform2));
         glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -226,6 +216,16 @@ int main(){
         //THIRD TRIANGLE
         ourShader3.use();
         glBindVertexArray(VAOs[2]);
+
+        transform3 = glm::translate(transform3, glm::vec3(0.4f, 0.2f, 0.0f));
+        transform3 = glm::rotate(transform3, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        transform3 = glm::translate(transform3, glm::vec3(-0.4f, -0.2f, 0.0f));
+        // transform3 = glm::translate(transform3, glm::vec3(-0.4f, -0.2f, 0));
+
+
+        // std::cout << (float)glfwGetTime() << std::endl;
+        // transform2 = glm::translate(transform2, glm::vec3(1.0f, 1.0f, 0.0f));
+        //transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
         unsigned int transformLoc3 = glGetUniformLocation(ourShader3.ID, "transform3");
         glUniformMatrix4fv(transformLoc3, 1, GL_FALSE, glm::value_ptr(transform3));
         glDrawArrays(GL_TRIANGLES, 0, 3);
