@@ -73,7 +73,7 @@ Create two shader programs where the second program uses a different fragment sh
 ## LAB 03
 [(Back to top)](#table-of-contents)
 - Lab03: In a single window render 3 objects (any) and in the first apply the scale, in the second apply the rotation and in the third apply the translation.
-<!-- ![no-yellow-team](img/gifs/lab2-scala-shaders.gif) -->
+![no-yellow-team](img/gifs/lab03.gif)
 
 
 ## LAB 04
