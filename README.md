@@ -18,6 +18,7 @@
     - [Change Color](#change-color)
 - [Lab 02](#lab-02)
 - [Lab 03](#lab-03)
+- [Lab 04](#lab-04)
 
 ## Lab 01
 [(Back to top)](#table-of-contents)
@@ -74,3 +75,7 @@ Create two shader programs where the second program uses a different fragment sh
 - Lab03: In a single window render 3 objects (any) and in the first apply the scale, in the second apply the rotation and in the third apply the translation.
 <!-- ![no-yellow-team](img/gifs/lab2-scala-shaders.gif) -->
 
+
+## LAB 04
+[(Back to top)](#table-of-contents)
+- Lab04:  Render Newton Disk
