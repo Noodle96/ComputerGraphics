@@ -12,6 +12,7 @@
     - [Exercise 01](#exercise-01)
     - [Exercise 02](#exercise-02)
     - [Exercise 03](#exercise-03)
+    - [Circle](#circle)
 - [SHADERS](#shaders)
     - [First Example](#first-example-shaders)
     - [Second Example](#second-example-shaders)
@@ -47,6 +48,12 @@ Now create the same 2 triangles using two different VAOs and VBOs for their data
 Create two shader programs where the second program uses a different fragment shader that outputs the color yellow; draw both triangles again where one outputs the color yellow.
 <p align="center">
   <img src='img/exercise03.png' width='800px' />
+</p>
+
+#### Circle
+Render a Circle
+<p align="center">
+  <img src='img/img/circle.png' width='800px' />
 </p>
 
 ## SHADERS
