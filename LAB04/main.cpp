@@ -61,9 +61,9 @@ int main(){
     std::vector<glm::vec3> verticesCirculo;
     std::vector<unsigned int> indicesCirculo;
     buildCircle(1, 128, verticesCirculo, indicesCirculo);
-    // for(int e= 0 ;e < verticesCirculo.size() ; e++){
-    //     std::cout << glm::to_string(verticesCirculo[e]) << std::endl;
-    // }
+    for(int e= 0 ;e < verticesCirculo.size() ; e++){
+        std::cout << glm::to_string(verticesCirculo[e]) << std::endl;
+    }
     std::cout << "-----" << std::endl;
     for(int e= 0 ;e < indicesCirculo.size() ; e++){
         std::cout << indicesCirculo[e] << std::endl;
