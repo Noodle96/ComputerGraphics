@@ -51,23 +51,36 @@ int main(){
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
-    int SIZEOF_L_FIRST_TRIANGLE;
+    // int SIZEOF_L_FIRST_TRIANGLE;
     // int SIZEOF_L_SECOND_TRIANGLE;
     // int SIZEOF_L_THIRD_TRIANGLE;
-    float* firstTriangle = getFirstTriangle(SIZEOF_L_FIRST_TRIANGLE);
+    // float* firstTriangle = getFirstTriangle(SIZEOF_L_FIRST_TRIANGLE);
     // float *secondTriangle = getSecondTriangle(SIZEOF_L_SECOND_TRIANGLE);
     // float *thirdTriangle = getThirdTriangle(SIZEOF_L_THIRD_TRIANGLE);
 
-    
+    std::vector<glm::vec3> verticesCirculo;
+    std::vector<unsigned int> indicesCirculo;
+    buildCircle(1, 128, verticesCirculo, indicesCirculo);
+    // for(int e= 0 ;e < verticesCirculo.size() ; e++){
+    //     std::cout << glm::to_string(verticesCirculo[e]) << std::endl;
+    // }
+    std::cout << "-----" << std::endl;
+    for(int e= 0 ;e < indicesCirculo.size() ; e++){
+        std::cout << indicesCirculo[e] << std::endl;
+    }
+
+
     
     // unsigned int VBOs[3], VAOs[3];
     // glGenVertexArrays(3, VAOs); // we can also generate multiple VAOs or buffers at the same time
     // glGenBuffers(3, VBOs);
     unsigned int VBO, VAO;
+	unsigned int EBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
 
-    
+    // element buffer object
+    glGenBuffers(1, &EBO);
 
     // //first Triangle
     // glBindVertexArray(VAOs[0]);
@@ -78,8 +91,15 @@ int main(){
 
     // glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
     // glBufferData(GL_ARRAY_BUFFER, SIZEOF_L_FIRST_TRIANGLE, firstTriangle, GL_STATIC_DRAW);
+
+    // glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    // glBufferData(GL_ARRAY_BUFFER, SIZEOF_L_FIRST_TRIANGLE, firstTriangle, GL_STATIC_DRAW);
+    // std::cout << SIZEOF_L_FIRST_TRIANGLE << std::endl;
+
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, SIZEOF_L_FIRST_TRIANGLE, firstTriangle, GL_STATIC_DRAW);
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * verticesCirculo.size(), &verticesCirculo[0], GL_STATIC_DRAW);
+    // std::cout << SIZEOF_L_FIRST_TRIANGLE << std::endl;
 
 
     // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);	// Vertex attributes stay the same
@@ -87,8 +107,11 @@ int main(){
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0); 
-    glBindBuffer(GL_ARRAY_BUFFER, 0); 
+    // glBindBuffer(GL_ARRAY_BUFFER, 0); 
+    // glBindBuffer(GL_ARRAY_BUFFER, 0); 
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indicesCirculo.size(), &indicesCirculo[0], GL_STATIC_DRAW); // asd
+
 
 
 
@@ -197,11 +220,9 @@ int main(){
         // }
 
         //FIRST TRIANGLE
-        ourShader.use();
-        glBindVertexArray(VAO);
-        for(int e = 0 ; e < 2; e++){
-            glDrawArrays(GL_TRIANGLES, 0, 3);
-        }
+        // ourShader.use();
+        // glBindVertexArray(VAO);
+        // glDrawArrays(GL_TRIANGLES, 0, 3);
         // glBindVertexArray(VAOs[0]);
         // update shader uniform
         //double  timeValue = glfwGetTime();
@@ -259,7 +280,11 @@ int main(){
         // glUniformMatrix4fv(transformLoc3, 1, GL_FALSE, glm::value_ptr(transform3));
         // glDrawArrays(GL_TRIANGLES, 0, 3);
 
-
+        // RENDER CIRCLE
+        ourShader.use();
+        glBindVertexArray(VAO);
+        // glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, indicesCirculo.size(), GL_UNSIGNED_INT, 0);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
