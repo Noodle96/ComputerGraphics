@@ -20,6 +20,7 @@
 - [Lab 02](#lab-02)
 - [Lab 03](#lab-03)
 - [Lab 04](#lab-04)
+- [Lab 05](#lab-05)
 
 ## Lab 01
 [(Back to top)](#table-of-contents)
@@ -86,3 +87,7 @@ Render a Circle
 ## LAB 04
 [(Back to top)](#table-of-contents)
 - Lab04:  Render Newton Disk
+
+## LAB 05
+[(Back to top)](#table-of-contents)
+- Lab04:  Texturas
