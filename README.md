@@ -13,6 +13,7 @@
     - [Exercise 02](#exercise-02)
     - [Exercise 03](#exercise-03)
     - [Circle](#circle)
+    - [Texturas](#texturas)
 - [SHADERS](#shaders)
     - [First Example](#first-example-shaders)
     - [Second Example](#second-example-shaders)
@@ -55,6 +56,12 @@ Create two shader programs where the second program uses a different fragment sh
 Render a Circle
 <p align="center">
   <img src='img/img/circle.png' width='800px' />
+</p>
+
+#### Texturas
+use texturas
+<p align="center">
+  <img src='img/img/texturas.png' width='800px' />
 </p>
 
 ## SHADERS
