@@ -290,9 +290,10 @@ int main()
     // };
     float a = 0.1;
     float vertices [] = {
-        -8*a, 1*a, 0.0f,       1.0f, 1.0f, //botton left
-        -2*a, 1*a, 0.0f,    1.0f, 0.0f,  //bottom right
-        -5*a, 7*a, 0.0f,  0.0f, 1.0f, //top
+//      positions          colors                 textures coordenadas
+        -8*a, 1*a, 0.0f,   1.0f, 0.0f, 0.0f,      -8*a, 1*a, //botton left
+        -2*a, 1*a, 0.0f,   0.0f, 1.0f, 0.0f,      -2*a, 1*a,  //bottom right
+        -5*a, 7*a, 0.0f,   0.0f, 0.0f, 1.0f,      -5*a, 7*a, //top
     };
     
     // unsigned int indices[] = {  
@@ -324,13 +325,13 @@ int main()
 
 
     // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     // color attribute
-    // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    // glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
     // texture coord attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
 
