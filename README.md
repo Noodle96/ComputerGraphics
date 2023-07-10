@@ -22,6 +22,7 @@
 - [Lab 03](#lab-03)
 - [Lab 04](#lab-04)
 - [Lab 05](#lab-05)
+- [Lab 06](#lab-06)
 
 ## Lab 01
 [(Back to top)](#table-of-contents)
@@ -99,3 +100,7 @@ use texturas
 [(Back to top)](#table-of-contents)
 - Lab05:  Texturas con las 3 transformaciones basicas
 ![no-yellow-team](img/gifs/lab05.gif)
+
+## LAB 06
+[(Back to top)](#table-of-contents)
+- Lab06:  Create a cube and rotate with kewboard
