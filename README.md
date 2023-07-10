@@ -97,4 +97,5 @@ use texturas
 
 ## LAB 05
 [(Back to top)](#table-of-contents)
-- Lab04:  Texturas
+- Lab05:  Texturas con las 3 transformaciones basicas
+![no-yellow-team](img/gifs/lab05.gif)

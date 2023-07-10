@@ -208,6 +208,7 @@ int main(){
 
 
         glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+        // std::cout << glm::to_string(transform) << std::endl;
         glm::mat4 transform2 = glm::mat4(1.0f);
         glm::mat4 transform3 = glm::mat4(1.0f);
         // glm::vec3 test = glm::vec3(0.0f, 0.0f, 1.0f);
