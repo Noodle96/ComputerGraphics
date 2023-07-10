@@ -84,15 +84,37 @@ int main(){
     glBindVertexArray(VAOs[1]);	// note that we bind to a different VAO now
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);	// and a different VBO
     glBufferData(GL_ARRAY_BUFFER, SIZEOF_L_SECOND_TRIANGLE, secondTriangle, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out
+    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out
+    // glEnableVertexAttribArray(0);
+    // position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    // color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    // texture coord attribute
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+
+
+
+
 
     //third triangle
     glBindVertexArray(VAOs[2]);	// note that we bind to a different VAO now
     glBindBuffer(GL_ARRAY_BUFFER, VBOs[2]);	// and a different VBO
     glBufferData(GL_ARRAY_BUFFER, SIZEOF_L_THIRD_TRIANGLE, thirdTriangle, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out
+    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0); // because the vertex data is tightly packed we can also specify 0 as the vertex attribute's stride to let OpenGL figure it out
+    // glEnableVertexAttribArray(0);
+    // position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    // color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    // texture coord attribute
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
 
 
 
@@ -113,7 +135,7 @@ int main(){
     // load image, create texture and generate mipmaps
     int width, height, nrChannels;
     // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-    unsigned char *data = stbi_load("/home/russell/ComputerGraphics/img/img/colores.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("/home/russell/ComputerGraphics/img/img/peru.jpg", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -126,6 +148,31 @@ int main(){
     stbi_image_free(data);
 
 
+    unsigned int texture2;
+    glGenTextures(1, &texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
+    // set the texture wrapping parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    // load image, create texture and generate mipmaps
+    int width2, height2, nrChannels2;
+    // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
+    unsigned char *data2 = stbi_load("/home/russell/ComputerGraphics/img/img/colores.jpg", &width2, &height2,&nrChannels2, 0);
+    if (data2)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width2, height2, 0, GL_RGB, GL_UNSIGNED_BYTE, data2);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    stbi_image_free(data2);
+
+
 
 
 
@@ -134,12 +181,12 @@ int main(){
 
     // render loop
     // -----------
-    double scaleFactor = 0.5;
-    bool subida = true;
+    double scaleFactor = 1.0;
+    bool subida = false;
     int k = 0;
 
-    float transationFactor = 0.1;
-    bool topeDerecha = true;
+    float translationFactor = 0.1;
+    bool topUp = true;
     while (!glfwWindowShouldClose(window))
     {
         // input
@@ -197,21 +244,23 @@ int main(){
 
         //LOGICA DE LA SCALA
         if(subida){
-            scaleFactor += 0.005;
-            if(scaleFactor >= 1.25) subida = false;
+            // std::cout << "subida" << std::endl;
+            scaleFactor += 0.004;
+            if(scaleFactor >= 1) subida = false;
         }else{
-            scaleFactor-= 0.005;
+            // std::cout << "bajada" << std::endl;
+            scaleFactor-= 0.004;
             if(scaleFactor <= 0.5) subida = true;
         }
 
 
         //LOGICA DELA TRANSLACION
-        if(topeDerecha){
-            transationFactor += 0.005;
-            if(transationFactor >= 1.2) topeDerecha=false;
+        if(topUp){
+            translationFactor += 0.005;
+            if(translationFactor >= 1.1) topUp=false;
         }else{
-            transationFactor -= 0.005;
-            if(transationFactor <= -0.2) topeDerecha = true;
+            translationFactor -= 0.005;
+            if(translationFactor <= -0.2) topUp = true;
         }
         // std::cout <<traslationFactor << std::endl;
 
@@ -221,6 +270,7 @@ int main(){
         // }
 
         //FIRST TRIANGLE
+        glBindTexture(GL_TEXTURE_2D, texture2);
         ourShader.use();
         glBindVertexArray(VAOs[0]);
         // update shader uniform
@@ -247,6 +297,7 @@ int main(){
 
         //SECOND TRIANGLE
         // transform2 = glm::scale(transform2, glm::vec3(1.75-scaleFactor, 1.75-scaleFactor, 1.75-scaleFactor));
+        // glBindTexture(GL_TEXTURE_2D, texture2);
         ourShader2.use();
         glBindVertexArray(VAOs[1]);
         // float redValue = static_cast<float>(fabs(sin(1.2*timeValue)));
@@ -254,15 +305,17 @@ int main(){
         // ourShader2.changeOurColor(vertexColorLocation, (1.0-redValue), 0.0f, 0.0f, 1.0f);
 
 
-        transform2 = glm::translate(transform2, glm::vec3(transationFactor, 0, 0));
+        transform2 = glm::translate(transform2, glm::vec3(0, translationFactor, 0));
         // std::cout << glm::to_string(transform2) << std::endl;
-        unsigned int transformLoc2 = glGetUniformLocation(ourShader2.ID, "transform2");
+        unsigned int transformLoc2 = glGetUniformLocation(ourShader2.ID, "transform");
         glUniformMatrix4fv(transformLoc2, 1, GL_FALSE, glm::value_ptr(transform2));
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
 
 
         //THIRD TRIANGLE
+        // glBindTexture(GL_TEXTURE_2D, texture);
+        // glBindTexture(GL_TEXTURE_2D, texture);
         ourShader3.use();
         glBindVertexArray(VAOs[2]);
 
@@ -275,7 +328,7 @@ int main(){
         // std::cout << (float)glfwGetTime() << std::endl;
         // transform2 = glm::translate(transform2, glm::vec3(1.0f, 1.0f, 0.0f));
         //transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-        unsigned int transformLoc3 = glGetUniformLocation(ourShader3.ID, "transform3");
+        unsigned int transformLoc3 = glGetUniformLocation(ourShader3.ID, "transform");
         glUniformMatrix4fv(transformLoc3, 1, GL_FALSE, glm::value_ptr(transform3));
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
