@@ -14,6 +14,7 @@
     - [Exercise 03](#exercise-03)
     - [Circle](#circle)
     - [Texturas](#texturas)
+    - [Coordinate Systems](#coordinate-systems)
 - [SHADERS](#shaders)
     - [First Example](#first-example-shaders)
     - [Second Example](#second-example-shaders)
@@ -64,6 +65,12 @@ use texturas
 <p align="center">
   <img src='img/img/texturas.png' width='800px' />
 </p>
+
+#### Coordinate Systems
+Coordinate Systems
+![no-yellow-team](img/gifs/coordinate_systems.gif)
+
+
 
 ## SHADERS
 [(Back to top)](#table-of-contents)
