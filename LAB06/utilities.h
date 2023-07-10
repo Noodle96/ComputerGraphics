@@ -1,30 +1,45 @@
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 #include "libraries.h"
-float global_var = 0.0;
 float component_x = 1.0;
 float component_y = 1.0;
 float component_z = 1.0;
-float factorRotacion = 0.1;
+float angle = 0.0f;
 void processInput(GLFWwindow *window){
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) glfwSetWindowShouldClose(window, true);
     if(glfwGetKey(window,GLFW_KEY_LEFT) == GLFW_PRESS){
         std::cout << "GLFW_KEY_LEFT pressed" << std::endl;
         // std::cout << global_var << std::endl;
         // global_var += 0.1;
-        component_x -= factorRotacion;
+        if(component_y >= 0){
+            component_y = -1.0f;
+            angle = -angle;
+        }
+        component_x = 0.0f;
+        component_z = 0.0f;
+    
     }
     if(glfwGetKey(window,GLFW_KEY_RIGHT) == GLFW_PRESS){
         std::cout << "GLFW_KEY_RIGHT pressed" << std::endl;
-        component_x += factorRotacion;
+        if(component_y <= 0){
+            component_y = 1.0f;
+            angle = -angle;
+        }
+        component_x = 0.0f;
+        component_z = 0.0f;
     }
     if(glfwGetKey(window,GLFW_KEY_UP) == GLFW_PRESS){
         std::cout << "GLFW_KEY_UP pressed" << std::endl;
-        component_y += factorRotacion;
+        if(component_x >= 0) component_x = -1.0f;
+        component_y = 0.0f;
+        component_z = 0.0f;
+        
     }
     if(glfwGetKey(window,GLFW_KEY_DOWN) == GLFW_PRESS){
         std::cout << "GLFW_KEY_DOWN pressed" << std::endl;
-        component_y -= factorRotacion;
+        if(component_x <= 0) component_x = 1.0f;
+        component_y = 0.0f;
+        component_z = 0.0f;
     }
 
     if(glfwGetKey(window,GLFW_KEY_ENTER) == GLFW_PRESS) std::cout << "GLFW_KEY_ENTER pressed" << std::endl;
