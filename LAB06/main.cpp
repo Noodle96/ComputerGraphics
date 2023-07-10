@@ -242,7 +242,7 @@ int main()
 
     // render loop
     // -----------
-    float angle =0.0;
+    // float angle =0.0;
     while (!glfwWindowShouldClose(window))
     {
         // input
@@ -274,6 +274,7 @@ int main()
 
         // model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
         angle =  (float)glfwGetTime();
+        // std::cout <<"angle: " << angle << std::endl;
         model = glm::rotate(model,angle, glm::vec3(component_x, component_y, component_z));
         std::cout << "component_x: " << component_x << std::endl;
         std::cout << "component_y: " << component_y << std::endl;
