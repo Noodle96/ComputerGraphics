@@ -111,3 +111,4 @@ Coordinate Systems
 ## LAB 06
 [(Back to top)](#table-of-contents)
 - Lab06:  Create a cube and rotate with kewboard
+![no-yellow-team](img/gifs/lab06.gif)
