@@ -24,6 +24,7 @@
 - [Lab 04](#lab-04)
 - [Lab 05](#lab-05)
 - [Lab 06](#lab-06)
+- [Lab 07](#lab-07)
 
 ## Lab 01
 [(Back to top)](#table-of-contents)
@@ -112,3 +113,8 @@ Coordinate Systems
 [(Back to top)](#table-of-contents)
 - Lab06:  Create a cube and rotate with kewboard
 ![no-yellow-team](img/gifs/lab06.gif)
+
+## LAB 07
+[(Back to top)](#table-of-contents)
+- Lab07:  Render a pyramid and rotate with kewboard
+
